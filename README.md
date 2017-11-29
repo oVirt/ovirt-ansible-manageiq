@@ -1,7 +1,7 @@
 Deploy ManageIQ in oVirt
 ==================================================
 
-The `ovirt-manageiq` role downloads a ManageIQ/CloudForms QCOW image and deploys it into oVirt/Red Hat Virtualization (RHV).
+The `oVirt.manageiq` role downloads a ManageIQ/CloudForms QCOW image and deploys it into oVirt/Red Hat Virtualization (RHV).
 
 The role also enables you to create a virtual machine and attach the ManageIQ disk, then wait for the ManageIQ system to initialize, and register oVirt as an infrastructure provider.
 
@@ -120,7 +120,7 @@ Note that for passwords you should use Ansible vault.
           root_password: securepassword
 
       roles:
-        - ovirt-manageiq
+        - oVirt.manageiq
 ```
 
 License
