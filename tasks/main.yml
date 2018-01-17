@@ -18,10 +18,10 @@
 
 - block:
   - name: Login to oVirt engine
-    ovirt_auth:
-      username: "{{ engine_user }}"
-      password: "{{ engine_password }}"
-      url: "https://{{ engine_fqdn }}/ovirt-engine/api"
+    ovirt_auth_25:
+      username: "{{ engine_user | default(omit) }}"
+      password: "{{ engine_password | default(omit) }}"
+      url: "{{ (engine_fqdn is defined) | ternary('https://' ~engine_fqdn~ '/ovirt-engine/api', omit) }}"
       ca_file: "{{ engine_cafile | default(omit) }}"
       insecure: "{{ engine_cafile is undefined }}"
     tags:
