@@ -2,9 +2,9 @@
 ### ManageIQ/CloudForms ###
 
 # QCOW2 ManageIQ/CloudForms image URL:
-miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-fine-1.qc2
+miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-1.qc2
 miq_image_path: /tmp/ovirt_image_data
-miq_qcow_checksum: sha256:b3644e8ac75af9663d19372e21b8a0273d68e54bfd515518321d3102d08daebd
+miq_qcow_checksum: sha256:23322c2495de6b4aaa867c165325e15d1fd6da1aaf73d331417dd271418271d2
 miq_username: admin
 miq_password: smartvm
 
@@ -13,7 +13,7 @@ miq_rhv_provider_name: RHV provider
 
 ### oVirt/RHV ###
 # VM variables:
-miq_vm_name: manageiq_fine
+miq_vm_name: manageiq_gaprindashvili
 miq_vm_cluster: Default
 miq_vm_memory: 6GiB
 miq_vm_cpu: 2
