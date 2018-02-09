@@ -109,8 +109,8 @@ Note that for passwords you should use Ansible vault.
 
       vars:
         engine_fqdn: ovirt-engine.example.com
+        engine_user: admin@internal
         engine_password: 123456
-        engine_username: admin@internal
 
         miq_vm_name: manageiq_fine
         miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-fine-1.qc2
