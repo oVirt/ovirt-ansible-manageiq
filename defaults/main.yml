@@ -15,12 +15,12 @@ miq_rhv_provider_name: RHV provider
 # VM variables:
 miq_vm_name: manageiq_gaprindashvili-1
 miq_vm_cluster: Default
-miq_vm_memory: 6GiB
-miq_vm_cpu: 2
+miq_vm_memory: 12GiB
+miq_vm_cpu: 4
 miq_vm_os: rhel_7x64
 
 # Vm disks
-miq_vm_disk_size: 50GiB
+miq_vm_disk_size: 66GiB
 miq_vm_disk_interface: virtio
 miq_vm_disk_format: cow
 
