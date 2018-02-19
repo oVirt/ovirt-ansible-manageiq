@@ -60,6 +60,7 @@
   - name: Create vm
     ovirt_vms:
       auth: "{{ ovirt_auth }}"
+      state: running
       name: "{{ miq_vm_name }}"
       cluster: "{{ miq_vm_cluster }}"
       memory: "{{ miq_vm_memory }}"
@@ -123,6 +124,8 @@
       body_format: json
     register: miq_rhv_provider
     changed_when: "miq_rhv_provider.status == 201 or miq_rhv_provider.status == 200"
-    failed_when: "'error' in miq_rhv_provider.json and 'has already been taken' not in miq_rhv_provider.json.error.message"
+    failed_when:
+      - "miq_rhv_provider.json is defined and 'error' in miq_rhv_provider.json"
+      - "miq_rhv_provider.json.error.message is defined and 'has already been taken' not in miq_rhv_provider.json.error.message"
 
   when: "create_vm is defined"
