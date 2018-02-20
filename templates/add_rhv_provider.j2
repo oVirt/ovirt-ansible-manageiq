@@ -4,7 +4,10 @@
   "connection_configurations": [{
     "endpoint": {
       "role": "default",
-      "hostname": "{{ engine_fqdn }}",
+      "hostname": "{{ engine_fqdn.split(':')[0] }}",
+      {% if engine_fqdn.split(':') | length > 1  %}
+        "port": "{{ engine_fqdn.split(':')[1]  }}",
+      {% endif %}
       "verify_ssl": {{ engine_cafile is defined }},
       {% if engine_cafile is defined %}
         "certificate_authority": "{{ lookup('file', engine_cafile ) | regex_replace('\n', '\\n') }}",
