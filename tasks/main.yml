@@ -45,7 +45,7 @@
         the_query: "[?type=='data']"
 
     - name: Deploy the qcow image to oVirt engine
-      ovirt_disks:
+      ovirt_disk:
         auth: "{{ ovirt_auth }}"
         name: "{{ miq_vm_disk_name | default(miq_vm_name) }}"
         interface: "{{ miq_vm_disk_interface }}"
