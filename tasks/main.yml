@@ -128,5 +128,7 @@
     failed_when:
       - "miq_rhv_provider.json is defined and 'error' in miq_rhv_provider.json"
       - "miq_rhv_provider.json.error.message is defined and 'has already been taken' not in miq_rhv_provider.json.error.message"
-
+      # FIXME: If provider already exists with different name, don't fail, but we should change the name
+      # when there will exist any ansible module for managing providers:
+      - "miq_rhv_provider.json.error.message is defined and 'Host Name has to be unique per provider type' not in miq_rhv_provider.json.error.message"
   when: "create_vm is defined"
