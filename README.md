@@ -72,7 +72,17 @@ Virtual machine NICs variables:
 
 | Name                | Default value     |  Description                                         |
 |---------------------|-------------------|------------------------------------------------------|
-| miq_vm_nics         | {'name': 'nic1', 'profile_name': 'ovirtmgmt', 'interaface': 'virtio'} | Dictionary that defines the virtual machine network interfaces. |
+| miq_vm_nics         | {'name': 'nic1', 'profile_name': 'ovirtmgmt', 'interaface': 'virtio'} | List of dictionaries that defines the virtual machine network interfaces. |
+
+The item in `miq_vm_nics` list of can contain following attributes:
+
+| Name               | Default value  |                                              |
+|--------------------|----------------|----------------------------------------------|
+| name               | UNDEF          | The name of the network interface.           |
+| interface          | UNDEF          | Type of the network interface.               |
+| mac_address        | UNDEF          | Custom MAC address of the network interface, by default it's obtained from MAC pool. |
+| network            | UNDEF          | Logical network which the VM network interface should use. If network is not specified, then Empty network is used. |
+| profile            | UNDEF          | Virtual network interface profile to be attached to VM network interface. |
 
 ManageIQ variables:
 
