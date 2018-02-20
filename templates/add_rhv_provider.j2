@@ -22,7 +22,7 @@
     {
      "endpoint": {
         "role": "metrics",
-        "path": "ovirt_engine_history",
+        "path": "{{ metrics_db_name }}",
         "hostname": "{{ metrics_fqdn }}",
         {% if metrics_fqdn is defined %}
         "port": "{{ metrics_port }}",

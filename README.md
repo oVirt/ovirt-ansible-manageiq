@@ -91,6 +91,7 @@ RHV provider and RHV metrics variables:
 | metrics_user          | UNDEF             | The user to connection to metrics server.            |
 | metrics_password      | UNDEF             | The password of the `metrics_user` .                 |
 | metrics_port          | UNDEF             | Port to connect to oVirt/RHV metrics.                |
+| metrics_db_name       | ovirt_engine_history | Database name of the oVirt engine metrics database. |
 
 Dependencies
 ------------

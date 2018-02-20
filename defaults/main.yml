@@ -29,3 +29,6 @@ miq_vm_nics:
   - name: nic1
     profile_name: ovirtmgmt
     interface: virtio
+
+# Metrics DB name
+metrics_db_name: ovirt_engine_history
