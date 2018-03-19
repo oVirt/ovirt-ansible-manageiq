@@ -2,9 +2,9 @@
 ### ManageIQ/CloudForms ###
 
 # QCOW2 ManageIQ/CloudForms image URL:
-miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-1.qc2
+miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-2.qc2
 miq_image_path: /tmp/ovirt_image_data
-miq_qcow_checksum: sha256:23322c2495de6b4aaa867c165325e15d1fd6da1aaf73d331417dd271418271d2
+miq_qcow_checksum: sha256:8378d7ff79af536cb28dba28e6ea854d5d7710bd3acc52efe9f41d392cec8cd3
 miq_username: admin
 miq_password: smartvm
 
