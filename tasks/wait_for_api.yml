@@ -1,0 +1,29 @@
+  - name: Wait for ManageIQ/CloudForms API
+    uri:
+      url: "https://{{ miq_ip_addr }}/api/"
+      validate_certs: no
+      user: "{{ miq_username }}"
+      password: "{{ miq_password }}"
+    register: miq_vm
+    until: "miq_vm.status == 200"
+    retries: 50
+    delay: 20
+
+  - name: Add oVirt/RHV provider to ManageIQ/CloudForms
+    uri:
+      url: "https://{{ miq_ip_addr }}/api/providers"
+      validate_certs: no
+      method: POST
+      user: "{{ miq_username }}"
+      password: "{{ miq_password }}"
+      body: "{{ lookup('template', 'add_rhv_provider.j2') }}"
+      force_basic_auth: yes
+      body_format: json
+    register: miq_rhv_provider
+    changed_when: "miq_rhv_provider.status == 201 or miq_rhv_provider.status == 200"
+    failed_when:
+      - "miq_rhv_provider.json is defined and 'error' in miq_rhv_provider.json"
+      - "miq_rhv_provider.json.error.message is defined and 'has already been taken' not in miq_rhv_provider.json.error.message"
+      # FIXME: If provider already exists with different name, don't fail, but we should change the name
+      # when there will exist any ansible module for managing providers:
+      - "miq_rhv_provider.json.error.message is defined and 'Host Name has to be unique per provider type' not in miq_rhv_provider.json.error.message"
