@@ -1,0 +1,39 @@
+- name: Add host alias of appliance
+  no_log: true
+  add_host:
+    hostname: "{{ miq_ip_addr }}"
+    ansible_host: "{{ miq_ip_addr }}"
+    ansible_password: "{{ miq_password }}"
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+- name: Wait for SSH port of appliance
+  wait_for:
+    host: "{{ miq_ip_addr }}"
+    port: 22
+    delay: 10
+
+- name: Fetch info about appliance
+  command: "rpm -qi cfme"
+  register: cfme_rpm
+  ignore_errors: yes
+  warn: no
+  delegate_to: "{{ miq_ip_addr }}"
+
+- block:
+
+  - name: Hotplug database disk for CFME
+    ovirt_disk:
+      auth: "{{ ovirt_auth }}"
+      name: "{{ item.name }}"
+      vm_name: "{{ miq_vm_name }}"
+      interface: "{{ item.interface | default(omit) }}"
+      size: "{{ item.size | default(omit) }}"
+      format: "{{ item.format | default(omit) }}"
+      storage_domain: "{{ item.storage | default(miq_vm_disk_storage) | default(disk_storage_domain.name) }}"
+    with_items: "{{ miq_vm_disks }}"
+  
+  - name: Initialize CloudForms
+    command: "{{ miq_init_cmd }}"
+    delegate_to: "{{ miq_ip_addr }}"
+
+  when: "cfme_rpm.rc == 0"
