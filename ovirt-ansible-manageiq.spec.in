@@ -50,6 +50,11 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Tue Apr 10 2018 Ondra Machacek <omachace@redhat.com> - 1.1.7-1
+- Require Ansible 2.5.
+- Initialize CFME with default value.
+- Update defaults to use Gaprindashvili-2.
+
 * Thu Mar 1 2018 Ondra Machacek <omachace@redhat.com> - 1.1.6-1
 - Ensure VM is running before checking ManageIQ API.
 - Add variable for C&U Metrics Database Name.
