@@ -3,7 +3,7 @@
   add_host:
     hostname: "{{ miq_ip_addr }}"
     ansible_host: "{{ miq_ip_addr }}"
-    ansible_password: "{{ miq_password }}"
+    ansible_password: smartvm
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 
 - name: Wait for SSH port of appliance
@@ -31,9 +31,13 @@
       format: "{{ item.format | default(omit) }}"
       storage_domain: "{{ item.storage | default(miq_vm_disk_storage) | default(disk_storage_domain.name) }}"
     with_items: "{{ miq_vm_disks }}"
-  
+
   - name: Initialize CloudForms
     command: "{{ miq_init_cmd }}"
     delegate_to: "{{ miq_ip_addr }}"
 
   when: "cfme_rpm.rc == 0"
+
+- name: Set root password of appliance
+  shell: echo '{{ miq_vm_root_password }}' | passwd --stdin root
+  delegate_to: "{{ miq_ip_addr }}"

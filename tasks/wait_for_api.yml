@@ -2,8 +2,8 @@
     uri:
       url: "https://{{ miq_ip_addr }}/api/"
       validate_certs: no
-      user: "{{ miq_username }}"
-      password: "{{ miq_password }}"
+      user: "{{ miq_app_username }}"
+      password: "{{ miq_app_password }}"
     register: miq_vm
     until: "miq_vm.status == 200"
     retries: 50
@@ -14,8 +14,8 @@
       url: "https://{{ miq_ip_addr }}/api/providers"
       validate_certs: no
       method: POST
-      user: "{{ miq_username }}"
-      password: "{{ miq_password }}"
+      user: "{{ miq_app_username }}"
+      password: "{{ miq_app_password }}"
       body: "{{ lookup('template', 'add_rhv_provider.j2') }}"
       force_basic_auth: yes
       body_format: json
