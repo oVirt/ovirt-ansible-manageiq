@@ -15,7 +15,7 @@ Requirements
 
 Additionally, perform the following checks to ensure the required processes are running.
 * Check whether `ovirt-imageio-proxy` is running on the engine:
- 
+
  ```
 systemct status ovirt-imageio-proxy
 ```
@@ -50,20 +50,21 @@ Engine login variables:
 
 Virtual machine variables:
 
-| Name               | Default value     |  Description                                 |
-|--------------------|-------------------|----------------------------------------------|
-| miq_vm_name        | manageiq_fine     | The name of the ManageIQ virtual machine. |
-| miq_vm_cluster     | Default           | The cluster of the virtual machine.    |
-| miq_vm_memory      | 6GiB              | The virtual machine's system memory.    |
-| miq_vm_cpu         | 2                 | The number of virtual machine CPU cores.   |
-| miq_vm_os          | rhel_7x64         | The virtual machine operating system. |
-| miq_vm_cloud_init  | UNDEF             | The cloud init dictionary to be passed to the virtual machine. |
+| Name                  | Default value       |  Description                                 |
+|-----------------------|---------------------|----------------------------------------------|
+| miq_vm_name           | manageiq_fine       | The name of the ManageIQ virtual machine. |
+| miq_vm_cluster        | Default             | The cluster of the virtual machine.    |
+| miq_vm_memory         | 6GiB                | The virtual machine's system memory.    |
+| miq_vm_cpu            | 2                   | The number of virtual machine CPU cores.   |
+| miq_vm_os             | rhel_7x64           | The virtual machine operating system. |
+| miq_vm_root_password  | `miq_app_password`  | The root password for the virtual machine.  |
+| miq_vm_cloud_init     | UNDEF               | The cloud init dictionary to be passed to the virtual machine. |
 
 Virtual machine disks variables:
 
 | Name                | Default value     |  Description                            |
 |---------------------|-------------------|-----------------------------------------|
-| miq_vm_disk_name    | `miq_vm_name`     | The name of the virtual machine disk.   | 
+| miq_vm_disk_name    | `miq_vm_name`     | The name of the virtual machine disk.   |
 | miq_vm_disk_storage | UNDEF             | The target storage domain of the disk.  |
 | miq_vm_disk_size    | 50GiB             | The virtual machine disk size.          |
 | miq_vm_disk_interface | virtio          | The virtual machine disk interface type.|
@@ -87,10 +88,13 @@ The item in `miq_vm_nics` list of can contain following attributes:
 
 ManageIQ variables:
 
-| Name          | Default value     |  Description                                         |
-|---------------|-------------------|------------------------------------------------------|
-| miq_username  | admin             | The username used to login to ManageIQ. |
-| miq_password  | smartvm           | The password of user specific in username used to login to ManageIQ. |
+| Name              | Default value       |  Description                                         |
+|-------------------|---------------------|------------------------------------------------------|
+| miq_app_username  | admin               | The username used to login to ManageIQ. |
+| miq_app_password  | smartvm             | The password of user specific in username used to login to ManageIQ. |
+| miq_db_username   | root                | The username to connect to the database.  |
+| miq_db_password   | `miq_app_password`  | The password of user specific in username used to connect to the database.  |
+| miq_region        | 0                   | The ManageIQ region created in the database.  |
 
 
 RHV provider and RHV metrics variables:

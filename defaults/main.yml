@@ -5,8 +5,17 @@
 miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-2.qc2
 miq_image_path: /tmp/ovirt_image_data
 miq_qcow_checksum: sha256:8378d7ff79af536cb28dba28e6ea854d5d7710bd3acc52efe9f41d392cec8cd3
-miq_username: admin
-miq_password: smartvm
+
+# ManageIQ/CloudForms application credentials
+miq_app_username: admin
+miq_app_password: smartvm
+
+# ManageIQ/CloudForms database credentials
+miq_db_username: root
+miq_db_password: "{{ miq_app_password }}"
+
+# ManageIQ/CloudForms region
+miq_region: 0
 
 # Providers:
 miq_rhv_provider_name: RHV provider
@@ -19,6 +28,7 @@ miq_vm_cluster: Default
 miq_vm_memory: 12GiB
 miq_vm_cpu: 4
 miq_vm_os: rhel_7x64
+miq_vm_root_password: "{{ miq_app_password }}"
 
 # Vm disks
 miq_vm_disk_size: 66GiB
@@ -43,4 +53,4 @@ miq_vm_nics:
 metrics_db_name: ovirt_engine_history
 
 # Command to initialize cloudforms
-miq_init_cmd: "appliance_console_cli -i -r 0 -U root -p {{ miq_password }} -b /dev/vdb -k -f"
+miq_init_cmd: "appliance_console_cli -i -r {{ miq_region }} -U {{ miq_db_username }} -p '{{ miq_db_password }}' -b /dev/vdb -k -f"
