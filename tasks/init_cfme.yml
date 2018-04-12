@@ -21,19 +21,18 @@
 
 - block:
 
-  - name: Hotplug database disk for CFME
-    ovirt_disk:
-      auth: "{{ ovirt_auth }}"
-      name: "{{ item.name }}"
-      vm_name: "{{ miq_vm_name }}"
-      interface: "{{ item.interface | default(omit) }}"
-      size: "{{ item.size | default(omit) }}"
-      format: "{{ item.format | default(omit) }}"
-      storage_domain: "{{ item.storage | default(miq_vm_disk_storage) | default(disk_storage_domain.name) }}"
-    with_items: "{{ miq_vm_disks }}"
+  - name: Duplicate miq_init_cmd variable to override it
+    set_fact:
+      miq_init_cmd2: "{{ miq_init_cmd }}"
+
+  - include_tasks: cfme_identify_disk_device.yml
+
+  - include_tasks: cfme_hotplug_disk.yml
+    when: "item in miq_vm_disks"
+    with_items: "{{ miq_vm_disks_types }}"
 
   - name: Initialize CloudForms
-    command: "{{ miq_init_cmd }}"
+    command: "{{ miq_init_cmd2 }}"
     delegate_to: "{{ miq_ip_addr }}"
 
   when: "cfme_rpm.rc == 0"

@@ -25,7 +25,7 @@
   register: miq_admin_password
   changed_when: "miq_admin_password.status == 201 or miq_admin_password.status == 200"
   failed_when:
-    - "miq_rhv_provider.json is defined and 'error' in miq_rhv_provider.json"
+    - "miq_admin_password.json is defined and 'error' in miq_admin_password.json"
 
 - name: Add oVirt/RHV provider to ManageIQ/CloudForms
   uri:

@@ -50,17 +50,17 @@ Engine login variables:
 
 Virtual machine variables:
 
-| Name                  | Default value       |  Description                                 |
-|-----------------------|---------------------|----------------------------------------------|
-| miq_vm_name           | manageiq_fine       | The name of the ManageIQ virtual machine. |
-| miq_vm_cluster        | Default             | The cluster of the virtual machine.    |
-| miq_vm_memory         | 6GiB                | The virtual machine's system memory.    |
-| miq_vm_cpu            | 2                   | The number of virtual machine CPU cores.   |
-| miq_vm_os             | rhel_7x64           | The virtual machine operating system. |
-| miq_vm_root_password  | `miq_app_password`  | The root password for the virtual machine.  |
+| Name                  | Default value       |  Description                                                   |
+|-----------------------|---------------------|----------------------------------------------------------------|
+| miq_vm_name           | manageiq_fine       | The name of the ManageIQ virtual machine.                      |
+| miq_vm_cluster        | Default             | The cluster of the virtual machine.                            |
+| miq_vm_memory         | 6GiB                | The virtual machine's system memory.                           |
+| miq_vm_cpu            | 2                   | The number of virtual machine CPU cores.                       |
+| miq_vm_os             | rhel_7x64           | The virtual machine operating system.                          |
+| miq_vm_root_password  | `miq_app_password`  | The root password for the virtual machine.                     |
 | miq_vm_cloud_init     | UNDEF               | The cloud init dictionary to be passed to the virtual machine. |
 
-Virtual machine disks variables:
+Virtual machine main disks variables (e.g. operating system):
 
 | Name                | Default value     |  Description                            |
 |---------------------|-------------------|-----------------------------------------|
@@ -69,6 +69,17 @@ Virtual machine disks variables:
 | miq_vm_disk_size    | 50GiB             | The virtual machine disk size.          |
 | miq_vm_disk_interface | virtio          | The virtual machine disk interface type.|
 | miq_vm_disk_format  | cow               | The format of the virtual machine disk. |
+
+Virtual machine extra disks (e.g. database, log, tmp): a dict named
+`miq_vm_disks` allows to describe each of the extra disks (see example
+playbook). For each disk, the following attributes can be set:
+
+| Name      | Default value |  Description                                                         |
+|-----------|---------------|----------------------------------------------------------------------|
+| name      | UNDEF         | The name of the virtual machine disk. i                              |
+| size      | UNDEF         | The virtual machine disk size (`XXGiB`).                             |
+| interface | UNDEF         | The virtual machine disk interface type (`virtio` or `virtio_scsi`). |
+| format    | UNDEF         | The format of the virtual machine disk (`raw` or `cow`).             |
 
 Virtual machine NICs variables:
 
@@ -133,9 +144,25 @@ Note that for passwords you should use Ansible vault.
         miq_vm_name: manageiq_fine
         miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-fine-1.qc2
         miq_vm_cluster: mycluster
+        miq_vm_root_password: securepassword
         miq_vm_cloud_init:
-          user_name: root
-          root_password: securepassword
+          host_name: "{{ miq_vm_name }}"
+        miq_vm_disks:
+          database:
+            name: "{{ miq_vm_name }}_Disk2"
+            size: 10GiB
+            interface: virtio
+            format: raw
+          log:
+            name: "{{ miq_vm_name }}_Disk3"
+            size: 10GiB
+            interface: virtio
+            format: cow
+          tmp:
+            name: "{{ miq_vm_name }}_Disk4"
+            size: 10GiB
+            interface: virtio
+            format: cow
 
       roles:
         - oVirt.manageiq

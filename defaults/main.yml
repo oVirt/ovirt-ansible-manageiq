@@ -41,7 +41,8 @@ miq_vm_disk_format: cow
 # Additional disks.
 # Default one is database disk.
 miq_vm_disks:
-  - name: miq_db_disk
+  database:
+    name: "{{ miq_vm_name }}_Disk2"
     size: 50GiB
     interface: virtio
     format: raw
@@ -56,4 +57,4 @@ miq_vm_nics:
 metrics_db_name: ovirt_engine_history
 
 # Command to initialize cloudforms
-miq_init_cmd: "appliance_console_cli -i -r {{ miq_region }} -U {{ miq_db_username }} -p '{{ miq_db_password }}' -b /dev/vdb -k -f"
+miq_init_cmd: "appliance_console_cli -i -r {{ miq_region }} -U {{ miq_db_username }} -p '{{ miq_db_password }}' -k -f"
