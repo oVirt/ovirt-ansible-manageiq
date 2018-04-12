@@ -1,0 +1,13 @@
+- name: Hotplug {{ item }} disk for CFME
+  ovirt_disk:
+    auth: "{{ ovirt_auth }}"
+    name: "{{ miq_vm_disks[item].name }}"
+    vm_name: "{{ miq_vm_name }}"
+    interface: "{{ miq_vm_disks[item].interface | default(omit) }}"
+    size: "{{ miq_vm_disks[item].size | default(omit) }}"
+    format: "{{ miq_vm_disks[item].format | default(omit) }}"
+    storage_domain: "{{ miq_vm_disks[item].storage | default(miq_vm_disk_storage) | default(disk_storage_domain.name) }}"
+
+- name: Add {{ item }} disk to CloudForms initialization command
+  set_fact:
+    miq_init_cmd2: "{{ miq_init_cmd2 }} {{ miq_init_cmd_options.disks[item] }} {{ miq_vm_disks_devices[item] }}"
