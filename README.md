@@ -92,6 +92,8 @@ ManageIQ variables:
 |-------------------|---------------------|------------------------------------------------------|
 | miq_app_username  | admin               | The username used to login to ManageIQ. |
 | miq_app_password  | smartvm             | The password of user specific in username used to login to ManageIQ. |
+| miq_username      | admin               | Alias of `miq_app_username` for backward compatibility.  |
+| miq_password      | smartvm             | Alias of `miq_app_password` for backward compatibility.  |
 | miq_db_username   | root                | The username to connect to the database.  |
 | miq_db_password   | `miq_app_password`  | The password of user specific in username used to connect to the database.  |
 | miq_region        | 0                   | The ManageIQ region created in the database.  |

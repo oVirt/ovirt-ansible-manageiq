@@ -7,8 +7,11 @@ miq_image_path: /tmp/ovirt_image_data
 miq_qcow_checksum: sha256:8378d7ff79af536cb28dba28e6ea854d5d7710bd3acc52efe9f41d392cec8cd3
 
 # ManageIQ/CloudForms application credentials
-miq_app_username: admin
-miq_app_password: smartvm
+# We keep miq_{username,password} for backward compatibility
+miq_username: admin
+miq_password: smartvm
+miq_app_username: "{{ miq_username }}"
+miq_app_password: "{{ miq_password }}"
 
 # ManageIQ/CloudForms database credentials
 miq_db_username: root
