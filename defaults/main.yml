@@ -20,6 +20,9 @@ miq_db_password: "{{ miq_app_password }}"
 # ManageIQ/CloudForms region
 miq_region: 0
 
+# ManageIQ/CloudForms company name
+miq_company: My Company
+
 # Providers:
 miq_rhv_provider_name: RHV provider
 miq_initialize: true
