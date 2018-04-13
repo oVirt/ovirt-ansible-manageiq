@@ -27,6 +27,22 @@
   failed_when:
     - "miq_admin_password.json is defined and 'error' in miq_admin_password.json"
 
+- name: Update ManageIQ company name
+  uri:
+    url: "https://{{ miq_ip_addr }}/api/servers/1/settings"
+    user: "{{ miq_app_username }}"
+    password: "{{ miq_app_password }}"
+    method: PATCH
+    validate_certs: no
+    body_format: json
+    body:
+      server:
+        company: "{{ miq_company }}"
+  register: miq_update_company
+  changed_when: "miq_update_company.status == 201 or miq_update_company.status == 200"
+  failed_when:
+    - "miq_update_company.json is defined and 'error' in miq_update_company.json"
+
 - name: Add oVirt/RHV provider to ManageIQ/CloudForms
   uri:
     url: "https://{{ miq_ip_addr }}/api/providers"

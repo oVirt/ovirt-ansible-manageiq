@@ -99,26 +99,27 @@ The item in `miq_vm_nics` list of can contain following attributes:
 
 ManageIQ variables:
 
-| Name              | Default value       |  Description                                         |
-|-------------------|---------------------|------------------------------------------------------|
-| miq_app_username  | admin               | The username used to login to ManageIQ. |
-| miq_app_password  | smartvm             | The password of user specific in username used to login to ManageIQ. |
-| miq_username      | admin               | Alias of `miq_app_username` for backward compatibility.  |
-| miq_password      | smartvm             | Alias of `miq_app_password` for backward compatibility.  |
-| miq_db_username   | root                | The username to connect to the database.  |
-| miq_db_password   | `miq_app_password`  | The password of user specific in username used to connect to the database.  |
-| miq_region        | 0                   | The ManageIQ region created in the database.  |
+| Name              | Default value       |  Description                                                               |
+|-------------------|---------------------|----------------------------------------------------------------------------|
+| miq_app_username  | admin               | The username used to login to ManageIQ.                                    |
+| miq_app_password  | smartvm             | The password of user specific in username used to login to ManageIQ.       |
+| miq_username      | admin               | Alias of `miq_app_username` for backward compatibility.                    |
+| miq_password      | smartvm             | Alias of `miq_app_password` for backward compatibility.                    |
+| miq_db_username   | root                | The username to connect to the database.                                   |
+| miq_db_password   | `miq_app_password`  | The password of user specific in username used to connect to the database. |
+| miq_region        | 0                   | The ManageIQ region created in the database.                               |
+| miq_company       | My Company          | The company name of the appliance.                                         |
 
 
 RHV provider and RHV metrics variables:
 
-| Name                  | Default value     |  Description                                         |
-|-----------------------|-------------------|------------------------------------------------------|
-| miq_rhv_provider_name | RHV provider      | Name of the RHV provider to be displayed in ManageIQ.|
-| metrics_fqdn          | UNDEF             | FQDN of the oVirt/RHV metrics.                       |
-| metrics_user          | UNDEF             | The user to connection to metrics server.            |
-| metrics_password      | UNDEF             | The password of the `metrics_user` .                 |
-| metrics_port          | UNDEF             | Port to connect to oVirt/RHV metrics.                |
+| Name                  | Default value     |  Description                                           |
+|-----------------------|-------------------|--------------------------------------------------------|
+| miq_rhv_provider_name | RHV provider      | Name of the RHV provider to be displayed in ManageIQ.  |
+| metrics_fqdn          | UNDEF             | FQDN of the oVirt/RHV metrics.                         |
+| metrics_user          | UNDEF             | The user to connection to metrics server.              |
+| metrics_password      | UNDEF             | The password of the `metrics_user` .                   |
+| metrics_port          | UNDEF             | Port to connect to oVirt/RHV metrics.                  |
 | metrics_db_name       | ovirt_engine_history | Database name of the oVirt engine metrics database. |
 
 Dependencies
