@@ -43,6 +43,8 @@
   failed_when:
     - "miq_update_company.json is defined and 'error' in miq_update_company.json"
 
+- include_tasks: manage_appliance_roles.yml
+
 - name: Add oVirt/RHV provider to ManageIQ/CloudForms
   uri:
     url: "https://{{ miq_ip_addr }}/api/providers"
