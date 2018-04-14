@@ -59,5 +59,9 @@ miq_vm_nics:
 # Metrics DB name
 metrics_db_name: ovirt_engine_history
 
+# ManageIQ/CloudForms roles
+miq_disabled_roles: []
+miq_enabled_roles: []
+
 # Command to initialize cloudforms
 miq_init_cmd: "appliance_console_cli -i -r {{ miq_region }} -U {{ miq_db_username }} -p '{{ miq_db_password }}' -k -f"
