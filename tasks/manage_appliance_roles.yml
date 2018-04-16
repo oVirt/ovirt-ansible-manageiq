@@ -23,8 +23,8 @@
 - name: Update list of active roles
   uri:
     url: https://{{ miq_ip_addr }}/api/servers/1/settings
-    user: "{{ miq_app_username | default('admin') }}"
-    password: "{{ miq_app_password | default('smartvm') }}"
+    user: "{{ miq_app_username }}"
+    password: "{{ miq_app_password }}"
     method: PATCH
     validate_certs: no
     body_format: json
