@@ -32,6 +32,21 @@
         msg: "The downloaded file is not a valid QCOW file."
       when: '"QCOW" not in filetype.stdout'
 
+    - name: Calculate image size in GiB
+      set_fact:
+        miq_image_size_gib: "{{ filetype.stdout_lines[0].split()[5] | int // 2**30 }}"
+
+    - block:
+      - name: Extract integer from miq_vm_disk_size
+        set_fact:
+          miq_vm_disk_size_gib: "{{ miq_vm_disk_size | regex_replace('GiB$') }}"
+
+      - name: Fail if miq_vm_disk_size is less than  qcow size
+        fail:
+          msg: "Setting a disk size ({{ miq_vm_disk_size }}) lower than the image size ({{ miq_image_size_gib }}GiB) may result in disk corruption."
+        when: "miq_vm_disk_size_gib < miq_image_size_gib"
+      when: "miq_vm_disk_size is defined"
+
     - name: Fetch storages
       ovirt_storage_domains_facts:
         auth: "{{ ovirt_auth }}"
@@ -49,7 +64,7 @@
         auth: "{{ ovirt_auth }}"
         name: "{{ miq_vm_disk_name | default(miq_vm_name) }}"
         interface: "{{ miq_vm_disk_interface }}"
-        size: "{{ miq_vm_disk_size}}"
+        size: "{{ miq_vm_disk_size | default(miq_image_size_gib + 'GiB') }}"
         format: "{{  miq_vm_disk_format }}"
         image_path: "{{ miq_image_path }}"
         storage_domain: "{{ miq_vm_disk_storage | default(disk_storage_domain.name) }}"
@@ -80,7 +95,7 @@
       auth: "{{ ovirt_auth }}"
       state: running
       name: "{{ miq_vm_name }}"
-  
+
   - name: Wait for VM IP
     ovirt_vms_facts:
       auth: "{{ ovirt_auth }}"
