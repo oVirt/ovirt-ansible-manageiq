@@ -14,9 +14,10 @@
 
 - name: Fetch info about appliance
   command: "rpm -qi cfme"
+  args:
+    warn: no
   register: cfme_rpm
   ignore_errors: yes
-  warn: no
   delegate_to: "{{ miq_ip_addr }}"
 
 - block:
