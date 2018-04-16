@@ -37,7 +37,6 @@ miq_vm_os: rhel_7x64
 miq_vm_root_password: "{{ miq_app_password }}"
 
 # Vm disks
-miq_vm_disk_size: 66GiB
 miq_vm_disk_interface: virtio
 miq_vm_disk_format: cow
 
