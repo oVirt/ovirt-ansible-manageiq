@@ -109,9 +109,21 @@ ManageIQ variables:
 | miq_db_password    | `miq_app_password`  | The password of user specific in username used to connect to the database. |
 | miq_region         | 0                   | The ManageIQ region created in the database.                               |
 | miq_company        | My Company          | The company name of the appliance.                                         |
-| miq_disabled_roles | []                  | List of ManageIQ roles to disable on the appliance.                        |
-| miq_enabled_roles  | []                  | List of ManageIQ roles to enable on the appliance.                         |
+| miq_disabled_roles | []                  | List of ManageIQ server roles to disable on the appliance.                 |
+| miq_enabled_roles  | []                  | List of ManageIQ server roles to enable on the appliance.                  |
 
+Both on ManageIQ and CloudForms, the default enabled server roles are:
+ - `automate` - Automation Engine
+ - `database_operations` - Database Operations
+ - `event` - Event Monitor
+ - `ems_inventory` - Provider Inventory
+ - `ems_operations` - Provider Operations
+ - `reporting` - Reporting
+ - `scheduler` - Scheduler
+ - `smartstate` - SmartState Analysis
+ - `user_interface` - User Interface
+ - `websocket` - Websocket
+ - `web_services` - Web Services
 
 RHV provider and RHV metrics variables:
 
