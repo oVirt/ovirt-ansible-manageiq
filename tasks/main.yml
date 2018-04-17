@@ -16,6 +16,18 @@
       pattern: "name={{ miq_vm_name }}"
 
   - block:
+    - name: Fetch storages
+      ovirt_storage_domains_facts:
+        auth: "{{ ovirt_auth }}"
+
+    - name: Find data domain
+      set_fact:
+        disk_storage_domain: "{{ ovirt_storage_domains | json_query(the_query) | list | first }}"
+      vars:
+        the_query: "[?type=='data']"
+    when: vm_disk_storage is undefined
+
+  - block:
     - name: Download the qcow image
       get_url:
         url: "{{ miq_qcow_url }}"
@@ -46,18 +58,6 @@
           msg: "Setting a disk size ({{ miq_vm_disk_size }}) lower than the image size ({{ miq_image_size_gib }}GiB) may result in disk corruption."
         when: "miq_vm_disk_size_gib < miq_image_size_gib"
       when: "miq_vm_disk_size is defined"
-
-    - name: Fetch storages
-      ovirt_storage_domains_facts:
-        auth: "{{ ovirt_auth }}"
-      when: vm_disk_storage is undefined
-
-    - name: Find data domain
-      set_fact:
-        disk_storage_domain: "{{ ovirt_storage_domains|json_query(the_query)|list|first}}"
-      when: vm_disk_storage is undefined
-      vars:
-        the_query: "[?type=='data']"
 
     - name: Deploy the qcow image to oVirt engine
       ovirt_disk:
