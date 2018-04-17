@@ -108,7 +108,7 @@
 
   - name: ManageIQ host IP address
     set_fact:
-      miq_ip_addr: "{{ ovirt_vms | map(attribute='reported_devices') | first | map(attribute='ips') | first | map(attribute='address') | first }}"
+      miq_ip_addr: "{{ ovirt_vms | ovirtvmipv4 }}"
 
   - block:
     - include: init_cfme.yml
