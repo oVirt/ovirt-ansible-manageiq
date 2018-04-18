@@ -3,6 +3,7 @@
   add_host:
     hostname: "{{ miq_ip_addr }}"
     ansible_host: "{{ miq_ip_addr }}"
+    ansible_user: root
     ansible_password: smartvm
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 
