@@ -35,7 +35,7 @@ QCOW variables:
 
 | Name          | Default value                                            |  Description                                                 |
 |---------------|----------------------------------------------------------|--------------------------------------------------------------|
-| miq_qcow_url  | http:////releases.manageiq.org/manageiq-ovirt-fine-1.qc2 | The URL of the ManageIQ QCOW image. |
+| miq_qcow_url  | http://releases.manageiq.org/manageiq-ovirt-fine-1.qc2 | The URL of the ManageIQ QCOW image. |
 | miq_image_path | /tmp/ovirt_image_data | The path where the qcow2 image will be downloaded. |
 | miq_qcow_checksum | sha256:b3644e8ac75af9663d19372e21b8a0273d68e54bfd515<br/>518321d3102d08daebd | Checksum of the qcow2 image file. It's used to validate the downloaded file.  |
 
