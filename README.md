@@ -17,13 +17,13 @@ Additionally, perform the following checks to ensure the required processes are 
 * Check whether `ovirt-imageio-proxy` is running on the engine:
 
  ```
-systemct status ovirt-imageio-proxy
+systemctl status ovirt-imageio-proxy
 ```
 
 * Check whether `ovirt-imageio-daemon` is running on the hosts:
 
  ```
-systemct status ovirt-imageio-daemon
+systemctl status ovirt-imageio-daemon
 ```
 
 You will also require the CA certificate of the engine. To do this, configure the `ovirt_ca` variable with the path to the CA certificate.
