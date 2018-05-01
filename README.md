@@ -156,8 +156,8 @@ Note that for passwords you should use Ansible vault.
         engine_user: admin@internal
         engine_password: 123456
 
-        miq_vm_name: manageiq_fine
-        miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-fine-1.qc2
+        miq_vm_name: manageiq_g2
+        miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-2.qc2
         miq_vm_cluster: mycluster
         miq_vm_root_password: securepassword
         miq_vm_cloud_init:
