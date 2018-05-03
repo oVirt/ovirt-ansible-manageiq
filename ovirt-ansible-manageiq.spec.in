@@ -50,6 +50,9 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Thu May 3 2018 Ondra Machacek <omachace@redhat.com> - 1.1.8-1
+- Use no_log=true for uri module.
+
 * Tue Apr 10 2018 Ondra Machacek <omachace@redhat.com> - 1.1.7-1
 - Require Ansible 2.5.
 - Initialize CFME with default value.
