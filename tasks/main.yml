@@ -33,9 +33,10 @@
         url: "{{ miq_qcow_url }}"
         dest: "{{ miq_image_path }}"
         checksum: "{{ miq_image_checksum | default(omit) }}"
+      register: downloaded_file
 
     - name: Check file type
-      command: "/usr/bin/file {{ miq_image_path | quote }}"
+      command: "/usr/bin/file {{ downloaded_file.dest | quote }}"
       changed_when: false
       register: filetype
 
@@ -66,7 +67,7 @@
         interface: "{{ miq_vm_disk_interface }}"
         size: "{{ miq_vm_disk_size | default(miq_image_size_gib + 'GiB') }}"
         format: "{{  miq_vm_disk_format }}"
-        image_path: "{{ miq_image_path }}"
+        image_path: "{{ downloaded_file.dest }}"
         storage_domain: "{{ miq_vm_disk_storage | default(disk_storage_domain.name) }}"
         force: "{{ ovirt_vms | length == 0 }}"
       register: ovirt_disk

@@ -36,7 +36,7 @@ QCOW variables:
 | Name          | Default value                                            |  Description                                                 |
 |---------------|----------------------------------------------------------|--------------------------------------------------------------|
 | miq_qcow_url  | http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-3.qc2 | The URL of the ManageIQ QCOW image. |
-| miq_image_path | /tmp/ovirt_image_data | The path where the qcow2 image will be downloaded. |
+| miq_image_path | /tmp/ | Path where the QCOW2 image will be downloaded to. If directory the base name of the URL on the remote server will be used. |
 | miq_image_checksum | UNDEF | If a checksum is defined, the digest of the destination file will be calculated after it is downloaded to ensure its integrity and verify that the transfer completed successfully. Format: :, e.g. checksum="sha256:D98291AC[...]B6DC7B97". |
 
 Engine login variables:
@@ -151,30 +151,31 @@ Note that for passwords you should use Ansible vault.
       hosts: localhost
       gather_facts: no
 
+      vars_files:
+        # Contains encrypted `engine_password` varibale using ansible-vault
+        - passwords.yml
+
       vars:
         engine_fqdn: ovirt-engine.example.com
         engine_user: admin@internal
-        engine_password: 123456
 
         miq_vm_name: manageiq_g2
-        miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-2.qc2
         miq_vm_cluster: mycluster
-        miq_vm_root_password: securepassword
         miq_vm_cloud_init:
           host_name: "{{ miq_vm_name }}"
         miq_vm_disks:
           database:
-            name: "{{ miq_vm_name }}_Disk2"
+            name: "{{ miq_vm_name }}_database"
             size: 10GiB
             interface: virtio
             format: raw
           log:
-            name: "{{ miq_vm_name }}_Disk3"
+            name: "{{ miq_vm_name }}_log"
             size: 10GiB
             interface: virtio
             format: cow
           tmp:
-            name: "{{ miq_vm_name }}_Disk4"
+            name: "{{ miq_vm_name }}_tmp"
             size: 10GiB
             interface: virtio
             format: cow

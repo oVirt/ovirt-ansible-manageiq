@@ -3,7 +3,7 @@
 
 # QCOW2 ManageIQ/CloudForms image URL:
 miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-3.qc2
-miq_image_path: /tmp/ovirt_image_data
+miq_image_path: /tmp/
 
 # ManageIQ/CloudForms application credentials
 # We keep miq_{username,password} for backward compatibility
