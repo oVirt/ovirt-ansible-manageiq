@@ -42,6 +42,7 @@
       - ems_metrics_coordinator
       - ems_metrics_collector
       - ems_metrics_processor
+      - embedded_ansible
 
   roles:
     - oVirt.manageiq

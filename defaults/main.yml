@@ -28,9 +28,9 @@ miq_initialize: true
 
 ### oVirt/RHV ###
 # VM variables:
-miq_vm_name: manageiq_gaprindashvili-1
+miq_vm_name: manageiq_gaprindashvili-3
 miq_vm_cluster: Default
-miq_vm_memory: 12GiB
+miq_vm_memory: 16GiB
 miq_vm_cpu: 4
 miq_vm_os: rhel_7x64
 miq_vm_root_password: "{{ miq_app_password }}"

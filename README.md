@@ -52,10 +52,10 @@ Virtual machine variables:
 
 | Name                  | Default value       |  Description                                                   |
 |-----------------------|---------------------|----------------------------------------------------------------|
-| miq_vm_name           | manageiq_fine       | The name of the ManageIQ virtual machine.                      |
+| miq_vm_name           | manageiq_gaprindashvili-3      | The name of the ManageIQ virtual machine.                      |
 | miq_vm_cluster        | Default             | The cluster of the virtual machine.                            |
-| miq_vm_memory         | 6GiB                | The virtual machine's system memory.                           |
-| miq_vm_cpu            | 2                   | The number of virtual machine CPU cores.                       |
+| miq_vm_memory         | 16GiB                | The virtual machine's system memory.                           |
+| miq_vm_cpu            | 4                   | The number of virtual machine CPU cores.                       |
 | miq_vm_os             | rhel_7x64           | The virtual machine operating system.                          |
 | miq_vm_root_password  | `miq_app_password`  | The root password for the virtual machine.                     |
 | miq_vm_cloud_init     | UNDEF               | The cloud init dictionary to be passed to the virtual machine. |
@@ -186,6 +186,7 @@ Note that for passwords you should use Ansible vault.
           - ems_metrics_coordinator
           - ems_metrics_collector
           - ems_metrics_processor
+          - embedded_ansible
 
       roles:
         - oVirt.manageiq
