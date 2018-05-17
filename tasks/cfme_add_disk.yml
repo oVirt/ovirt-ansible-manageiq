@@ -6,6 +6,7 @@
     interface: "{{ miq_vm_disks[item].interface | default(omit) }}"
     size: "{{ miq_vm_disks[item].size | default(omit) }}"
     format: "{{ miq_vm_disks[item].format | default(omit) }}"
+    timeout: "{{ miq_vm_disks[item].timeout | default(omit) }}"
     storage_domain: "{{ miq_vm_disks[item].storage | default(miq_vm_disk_storage) | default(disk_storage_domain.name) }}"
 
 - name: Add {{ item }} disk to CloudForms initialization command

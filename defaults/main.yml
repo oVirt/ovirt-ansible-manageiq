@@ -34,11 +34,14 @@ miq_vm_memory: 16GiB
 miq_vm_cpu: 4
 miq_vm_os: rhel_7x64
 miq_vm_root_password: "{{ miq_app_password }}"
-miq_disk_deploy_failed: false
+miq_vm_high_availability: true
+miq_vm_high_availability_priority: 50
+miq_vm_delete_protected: true
 
 # Vm disks
 miq_vm_disk_interface: virtio
 miq_vm_disk_format: cow
+miq_disk_deploy_failed: false
 
 # Additional disks.
 # Default one is database disk.

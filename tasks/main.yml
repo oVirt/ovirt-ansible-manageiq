@@ -21,8 +21,16 @@
         name: "{{ miq_vm_name }}"
         cluster: "{{ miq_vm_cluster }}"
         memory: "{{ miq_vm_memory }}"
+        memory_max: "{{ miq_vm_memory_max | default(omit) }}"
+        memory_guaranteed: "{{ miq_vm_memory_guaranteed | default(omit) }}"
         cpu_cores: "{{ miq_vm_cpu }}"
+        cpu_shares: "{{ miq_vm_cpu_shares | default(omit) }}"
+        cpu_sockets: "{{ miq_vm_cpu_sockets | default(omit) }}"
+        cpu_threads: "{{ miq_vm_cpu_threads | default(omit) }}"
         operating_system: "{{ miq_vm_os }}"
+        high_availability: "{{ miq_vm_high_availability }}"
+        high_availability_priority: "{{ miq_vm_high_availability_priority }}"
+        delete_protected: "{{ miq_vm_delete_protected }}"
         type: server
         disks:
           - id: "{{ ovirt_disk.id }}"

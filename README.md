@@ -54,11 +54,19 @@ Virtual machine variables:
 |-----------------------|---------------------|----------------------------------------------------------------|
 | miq_vm_name           | manageiq_gaprindashvili-3      | The name of the ManageIQ virtual machine.           |
 | miq_vm_cluster        | Default             | The cluster of the virtual machine.                            |
-| miq_vm_memory         | 16GiB                | The virtual machine's system memory.                          |
+| miq_vm_memory         | 16GiB               | The virtual machine's system memory.                           |
+| miq_vm_memory_guaranteed | UNDEF            | Amount of minimal guaranteed memory of the Virtual Machine. miq_vm_memory_guaranteed parameter can't be lower than miq_vm_memory parameter. |
+| miq_vm_memory_max     | UNDEF               | Upper bound of virtual machine memory up to which memory hot-plug can be performed. |
 | miq_vm_cpu            | 4                   | The number of virtual machine CPU cores.                       |
+| miq_vm_cpu_shares     | UNDEF               | Set a CPU shares for this Virtual Machine.                     |
+| miq_vm_cpu_sockets    | UNDEF               | Number of virtual CPUs sockets of the Virtual Machine.         |
+| miq_vm_cpu_threads    | UNDEF               | Number of virtual CPUs threads of the Virtual Machine.         |
 | miq_vm_os             | rhel_7x64           | The virtual machine operating system.                          |
 | miq_vm_root_password  | `miq_app_password`  | The root password for the virtual machine.                     |
 | miq_vm_cloud_init     | UNDEF               | The cloud init dictionary to be passed to the virtual machine. |
+| miq_vm_high_availability | true             | If yes ManageIQ virtual machine will be set as highly available. |
+| miq_vm_high_availability_priority | 50      | Indicates the priority of the virtual machine inside the run and migration queues. The value is an integer between 0 and 100. The higher the value, the higher the priority. |
+| miq_vm_delete_protected | true              | If yes ManageIQ virtual machine will be set as delete protected. |
 
 Virtual machine main disks variables (e.g. operating system):
 
@@ -80,6 +88,7 @@ playbook). For each disk, the following attributes can be set:
 | size      | UNDEF         | The virtual machine disk size (`XXGiB`).                             |
 | interface | UNDEF         | The virtual machine disk interface type (`virtio` or `virtio_scsi`). |
 | format    | UNDEF         | The format of the virtual machine disk (`raw` or `cow`).             |
+| timeout   | UNDEF         | Timeout of disk creation.                                            |
 
 Virtual machine NICs variables:
 
