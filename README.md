@@ -70,13 +70,13 @@ Virtual machine variables:
 
 Virtual machine main disks variables (e.g. operating system):
 
-| Name                | Default value     |  Description                            |
-|---------------------|-------------------|-----------------------------------------|
-| miq_vm_disk_name    | `miq_vm_name`     | The name of the virtual machine disk.   |
-| miq_vm_disk_storage | UNDEF             | The target storage domain of the disk.  |
-| miq_vm_disk_size    | Size of qcow disk | The virtual machine disk size.          |
-| miq_vm_disk_interface | virtio          | The virtual machine disk interface type.|
-| miq_vm_disk_format  | cow               | The format of the virtual machine disk. |
+| Name                | Default value        |  Description                            |
+|---------------------|----------------------|-----------------------------------------|
+| miq_vm_disk_name    | `miq_vm_name`        | The name of the virtual machine disk.   |
+| miq_vm_disk_storage | UNDEF                | The target storage domain of the disk.  |
+| miq_vm_disk_size    | Size of qcow disk    | The virtual machine disk size.          |
+| miq_vm_disk_interface | virtio             | The virtual machine disk interface type.|
+| miq_vm_disk_format  | cow                  | The format of the virtual machine disk. |
 
 Virtual machine extra disks (e.g. database, log, tmp): a dict named
 `miq_vm_disks` allows to describe each of the extra disks (see example
@@ -84,7 +84,7 @@ playbook). For each disk, the following attributes can be set:
 
 | Name      | Default value |  Description                                                         |
 |-----------|---------------|----------------------------------------------------------------------|
-| name      | UNDEF         | The name of the virtual machine disk. i                              |
+| name      | `miq_vm_name`_`type` | The name of the virtual machine disk.                 |
 | size      | UNDEF         | The virtual machine disk size (`XXGiB`).                             |
 | interface | UNDEF         | The virtual machine disk interface type (`virtio` or `virtio_scsi`). |
 | format    | UNDEF         | The format of the virtual machine disk (`raw` or `cow`).             |
