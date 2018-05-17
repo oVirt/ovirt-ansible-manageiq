@@ -34,6 +34,7 @@ miq_vm_memory: 16GiB
 miq_vm_cpu: 4
 miq_vm_os: rhel_7x64
 miq_vm_root_password: "{{ miq_app_password }}"
+miq_disk_deploy_failed: false
 
 # Vm disks
 miq_vm_disk_interface: virtio
@@ -43,7 +44,7 @@ miq_vm_disk_format: cow
 # Default one is database disk.
 miq_vm_disks:
   database:
-    name: "{{ miq_vm_name }}_Disk2"
+    name: "{{ miq_vm_name }}_database"
     size: 50GiB
     interface: virtio
     format: raw

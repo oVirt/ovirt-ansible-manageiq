@@ -1,4 +1,5 @@
 - name: Wait for ManageIQ/CloudForms API
+  no_log: true
   uri:
     url: "https://{{ miq_ip_addr }}/api/"
     validate_certs: no
@@ -46,6 +47,7 @@
 - include_tasks: manage_appliance_roles.yml
 
 - name: Add oVirt/RHV provider to ManageIQ/CloudForms
+  no_log: true
   uri:
     url: "https://{{ miq_ip_addr }}/api/providers"
     validate_certs: no

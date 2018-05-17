@@ -1,4 +1,4 @@
-- name: Hotplug {{ item }} disk for CFME
+- name: Add {{ item }} disk for CFME
   ovirt_disk:
     auth: "{{ ovirt_auth }}"
     name: "{{ miq_vm_disks[item].name }}"
