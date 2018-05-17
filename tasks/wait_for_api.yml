@@ -11,6 +11,7 @@
   delay: 20
 
 - name: Set application admin password
+  no_log: true
   uri:
     url: "https://{{ miq_ip_addr }}/api/users/1"
     validate_certs: no
