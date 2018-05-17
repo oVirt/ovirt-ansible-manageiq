@@ -6,6 +6,7 @@
     ansible_user: root
     ansible_password: smartvm
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+  changed_when: false
 
 - name: Wait for SSH port of appliance
   wait_for:
@@ -19,27 +20,16 @@
     warn: no
   register: cfme_rpm
   ignore_errors: yes
+  changed_when: false
   delegate_to: "{{ miq_ip_addr }}"
 
-- block:
-
-  - name: Duplicate miq_init_cmd variable to override it
-    set_fact:
-      miq_init_cmd2: "{{ miq_init_cmd }}"
-
-  - include_tasks: cfme_identify_disk_device.yml
-
-  - include_tasks: cfme_hotplug_disk.yml
-    when: "item in miq_vm_disks"
-    with_items: "{{ miq_vm_disks_types }}"
-
-  - name: Initialize CloudForms
-    command: "{{ miq_init_cmd2 }}"
-    delegate_to: "{{ miq_ip_addr }}"
-
+- name: Initialize CloudForms
+  command: "{{ miq_init_cmd2 }}"
+  delegate_to: "{{ miq_ip_addr }}"
   when: "cfme_rpm.rc == 0"
 
 - name: Set root password of appliance
+  no_log: true
   shell: echo '{{ miq_vm_root_password }}' | passwd --stdin root
   delegate_to: "{{ miq_ip_addr }}"
 
