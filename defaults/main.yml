@@ -3,7 +3,6 @@
 
 # QCOW2 ManageIQ/CloudForms image URL:
 miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-3.qc2
-miq_image_path: /tmp/
 
 # ManageIQ/CloudForms application credentials
 # We keep miq_{username,password} for backward compatibility
@@ -51,6 +50,7 @@ miq_vm_disks:
     size: 50GiB
     interface: virtio
     format: raw
+    timeout: 900
 
 # Vm NICS:
 miq_vm_nics:
@@ -60,6 +60,9 @@ miq_vm_nics:
 
 # Metrics DB name
 metrics_db_name: ovirt_engine_history
+metrics_port: 5432
+metrics_user: engine_history
+metrics_password: ''
 
 # ManageIQ/CloudForms roles
 miq_disabled_roles: []

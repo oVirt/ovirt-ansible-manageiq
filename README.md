@@ -136,13 +136,13 @@ Both on ManageIQ and CloudForms, the default enabled server roles are:
 
 RHV provider and RHV metrics variables:
 
-| Name                  | Default value     |  Description                                           |
-|-----------------------|-------------------|--------------------------------------------------------|
-| miq_rhv_provider_name | RHV provider      | Name of the RHV provider to be displayed in ManageIQ.  |
-| metrics_fqdn          | UNDEF             | FQDN of the oVirt/RHV metrics.                         |
-| metrics_user          | UNDEF             | The user to connection to metrics server.              |
-| metrics_password      | UNDEF             | The password of the `metrics_user` .                   |
-| metrics_port          | UNDEF             | Port to connect to oVirt/RHV metrics.                  |
+| Name                  | Default value  |  Description                                           |
+|-----------------------|----------------|--------------------------------------------------------|
+| miq_rhv_provider_name | RHV provider   | Name of the RHV provider to be displayed in ManageIQ.  |
+| metrics_fqdn          | UNDEF          | FQDN of the oVirt/RHV metrics.                         |
+| metrics_user          | engine_history | The user to connection to metrics server.              |
+| metrics_password      | ""             | The password of the `metrics_user` .                   |
+| metrics_port          | 5432           | Port to connect to oVirt/RHV metrics.                  |
 | metrics_db_name       | ovirt_engine_history | Database name of the oVirt engine metrics database. |
 
 Dependencies
