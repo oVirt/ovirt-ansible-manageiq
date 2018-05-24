@@ -1,5 +1,6 @@
 ---
 ### ManageIQ/CloudForms ###
+miq_image_path: /tmp
 
 # QCOW2 ManageIQ/CloudForms image URL:
 miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-3.qc2
