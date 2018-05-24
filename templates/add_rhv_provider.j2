@@ -10,29 +10,27 @@
       {% endif %}
       "verify_ssl": {{ engine_cafile is defined }},
       {% if engine_cafile is defined %}
-        "certificate_authority": "{{ lookup('file', engine_cafile ) | regex_replace('\n', '\\n') }}",
+         "certificate_authority": {{ lookup('file', engine_cafile) | to_json }}
       {% endif %}
     },
     "authentication": {
       "userid": "{{ engine_user }}",
-      "password": "{{ engine_password }}",
-    },
-  },
+      "password": "{{ engine_password }}"
+    }
+  }{% if metrics_fqdn is defined %},{% endif %}
   {% if metrics_fqdn is defined %}
-    {
-     "endpoint": {
-        "role": "metrics",
-        "path": "{{ metrics_db_name }}",
-        "hostname": "{{ metrics_fqdn }}",
-        {% if metrics_fqdn is defined %}
-        "port": "{{ metrics_port }}",
-        {% endif %}
-      },
-      "authentication": {
-        "userid": "{{ metrics_user }}",
-        "password": "{{ metrics_password }}",
-      },
+  {
+   "endpoint": {
+      "role": "metrics",
+      "path": "{{ metrics_db_name }}",
+      "hostname": "{{ metrics_fqdn }}",
+      "port": "{{ metrics_port }}"
     },
+    "authentication": {
+      "userid": "{{ metrics_user }}",
+      "password": "{{ metrics_password }}"
+    }
+  }
   {% endif %}
-  ],
+  ]
 }
