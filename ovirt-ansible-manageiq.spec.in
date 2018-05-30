@@ -50,6 +50,23 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Wed May 30 2018 Ondra Machacek <omachace@redhat.com> - 1.1.9-1
+- Fix JSON generation for RHV provider registration
+- Add default values for metrics variables
+- Create appliance disk names based on it's type
+- Add embedded ansible as a default service to example
+- Disable cloud-init service after deployment
+- Don't hardcode /tmp/ovirt_image_path
+- Update to Gaprindashvili-3
+- Add root user to cfme appliance inventory
+- Add support to disable/enable roles on the appliance.
+- Add support to set company name.
+- Add support for log and tmp disks.
+- Add support for different passwords: application, database and operating system.
+
+* Thu May 3 2018 Ondra Machacek <omachace@redhat.com> - 1.1.8-1
+- Use no_log=true for uri module.
+
 * Tue Apr 10 2018 Ondra Machacek <omachace@redhat.com> - 1.1.7-1
 - Require Ansible 2.5.
 - Initialize CFME with default value.
