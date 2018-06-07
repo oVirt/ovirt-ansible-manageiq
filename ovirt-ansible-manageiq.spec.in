@@ -50,6 +50,9 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Thu Jun 7 2018 Ondra Machacek <omachace@redhat.com> - 1.1.10-1
+- Add /vars directory to RPM. rhbz@1588415
+
 * Wed May 30 2018 Ondra Machacek <omachace@redhat.com> - 1.1.9-1
 - Fix JSON generation for RHV provider registration
 - Add default values for metrics variables
