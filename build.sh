@@ -48,6 +48,7 @@ install() {
   cp -pR library/ $PKG_DATA_DIR
   cp -pR tasks/ $PKG_DATA_DIR
   cp -pR templates/ $PKG_DATA_DIR
+  cp -pR vars/ $PKG_DATA_DIR
 
   echo "Installation done."
 }
