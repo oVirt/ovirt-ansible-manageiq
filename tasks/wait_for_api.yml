@@ -23,7 +23,7 @@
     body:
       action: "edit"
       resource:
-        password: "{{ miq_app_password }}"
+        password: "{{ miq_app_password | string }}"
   register: miq_admin_password
   changed_when: "miq_admin_password.status == 201 or miq_admin_password.status == 200"
   failed_when:
