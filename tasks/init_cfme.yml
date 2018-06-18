@@ -1,4 +1,5 @@
 - name: Add host alias of appliance
+  no_log: true
   add_host:
     hostname: "{{ miq_ip_addr }}"
     ansible_host: "{{ miq_ip_addr }}"
