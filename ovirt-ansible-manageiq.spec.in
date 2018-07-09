@@ -50,6 +50,9 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Mon Jul 9 2018 Ondra Machacek <omachace@redhat.com> - 1.1.11-1
+- Can't set password via miq_app_password variable. rhbz#1590336
+
 * Thu Jun 7 2018 Ondra Machacek <omachace@redhat.com> - 1.1.10-1
 - Add /vars directory to RPM. rhbz@1588415
 
