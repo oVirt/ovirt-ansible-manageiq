@@ -168,6 +168,7 @@ Note that for passwords you should use Ansible vault.
         engine_fqdn: ovirt-engine.example.com
         engine_user: admin@internal
 
+        miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-3.qc2
         miq_vm_name: manageiq_g2
         miq_vm_cluster: mycluster
         miq_vm_cloud_init:

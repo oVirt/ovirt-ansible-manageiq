@@ -14,6 +14,10 @@
     engine_user: admin@internal
     engine_cafile: /etc/pki/ovirt-engine/ca.pem
 
+    miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-3.qc2
+    miq_vm_name: manageiq_g3
+    miq_vm_cluster: mycluster
+
     metrics_fqdn: metrics.example.com
     metrics_port: 8443
     metrics_user: admin
