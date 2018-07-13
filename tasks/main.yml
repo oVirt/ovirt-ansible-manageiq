@@ -1,8 +1,8 @@
 ---
 - block:
   - set_fact:
-      engine_url: 'https://' ~engine_fqdn~ '/ovirt-engine/api'
-    when: engine_fqdn is defined
+      engine_url: "{{ 'https://' ~engine_fqdn | default(lookup('env', 'OVIRT_HOSTNAME')) ~ '/ovirt-engine/api' }}"
+    when: engine_fqdn is defined or lookup('env', 'OVIRT_HOSTNAME')
 
   - name: Login to oVirt engine
     ovirt_auth:
