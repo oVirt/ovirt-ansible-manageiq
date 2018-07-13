@@ -11,6 +11,8 @@
       url: "{{ engine_url | default(lookup('env', 'OVIRT_URL')) | default(omit) }}"
       ca_file: "{{ engine_cafile | default(lookup('env', 'OVIRT_CAFILE')) | default(omit) }}"
       insecure: "{{ engine_cafile is undefined }}"
+    when: ovirt_auth is undefined or not ovirt_auth
+    register: loggedin
     tags:
       - always
 
@@ -85,5 +87,6 @@
       ovirt_auth:
         state: absent
         ovirt_auth: "{{ ovirt_auth }}"
+      when: not loggedin.skipped | default(false)
       tags:
         - always
