@@ -1,11 +1,15 @@
 ---
 - block:
+  - set_fact:
+      engine_url: 'https://' ~engine_fqdn~ '/ovirt-engine/api'
+    when: engine_fqdn is defined
+
   - name: Login to oVirt engine
     ovirt_auth:
-      username: "{{ engine_user | default(lookup('env','OVIRT_USERNAME')) | default(omit) }}"
-      password: "{{ engine_password | default(lookup('env','OVIRT_PASSWORD')) | default(omit) }}"
-      url: "{{ (engine_fqdn is defined) | default(lookup('env','OVIRT_URL')) | ternary('https://' ~engine_fqdn~ '/ovirt-engine/api', omit) }}"
-      ca_file: "{{ engine_cafile | default(lookup('env','OVIRT_CAFILE')) | default(omit) }}"
+      username: "{{ engine_user | default(lookup('env', 'OVIRT_USERNAME')) | default(omit) }}"
+      password: "{{ engine_password | default(lookup('env', 'OVIRT_PASSWORD')) | default(omit) }}"
+      url: "{{ engine_url | default(lookup('env', 'OVIRT_URL')) | default(omit) }}"
+      ca_file: "{{ engine_cafile | default(lookup('env', 'OVIRT_CAFILE')) | default(omit) }}"
       insecure: "{{ engine_cafile is undefined }}"
     tags:
       - always
