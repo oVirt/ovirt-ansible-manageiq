@@ -1,4 +1,7 @@
 ---
+### This option disables no_log of tasks using sensistive data:
+miq_debug_create: false
+
 ### ManageIQ/CloudForms ###
 miq_image_path: /tmp
 

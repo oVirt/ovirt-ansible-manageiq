@@ -1,5 +1,5 @@
 - name: Add host alias of appliance
-  no_log: true
+  no_log: "{{ not miq_debug_create }}"
   add_host:
     hostname: "{{ miq_ip_addr }}"
     ansible_host: "{{ miq_ip_addr }}"
@@ -29,7 +29,7 @@
   when: "cfme_rpm.rc == 0"
 
 - name: Set root password of appliance
-  no_log: true
+  no_log: "{{ not miq_debug_create }}"
   shell: echo '{{ miq_vm_root_password }}' | passwd --stdin root
   delegate_to: "{{ miq_ip_addr }}"
 

@@ -10,6 +10,6 @@
     storage_domain: "{{ miq_vm_disks[item].storage | default(miq_vm_disk_storage) | default(disk_storage_domain.name) }}"
 
 - name: Add {{ item }} disk to CloudForms initialization command
-  no_log: true
+  no_log: "{{ not miq_debug_create }}"
   set_fact:
     miq_init_cmd2: "{{ miq_init_cmd2 }} {{ miq_init_cmd_options.disks[item] }} {{ miq_vm_disks_devices[item] }}"

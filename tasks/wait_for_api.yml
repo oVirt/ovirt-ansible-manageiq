@@ -1,5 +1,5 @@
 - name: Wait for ManageIQ/CloudForms API
-  no_log: true
+  no_log: "{{ not miq_debug_create }}"
   uri:
     url: "https://{{ miq_ip_addr }}/api/"
     validate_certs: no
@@ -11,7 +11,7 @@
   delay: 20
 
 - name: Set application admin password
-  no_log: true
+  no_log: "{{ not miq_debug_create }}"
   uri:
     url: "https://{{ miq_ip_addr }}/api/users/1"
     validate_certs: no
@@ -48,7 +48,7 @@
 - include_tasks: manage_appliance_roles.yml
 
 - name: Add oVirt/RHV provider to ManageIQ/CloudForms
-  no_log: true
+  no_log: "{{ not miq_debug_create }}"
   uri:
     url: "https://{{ miq_ip_addr }}/api/providers"
     validate_certs: no

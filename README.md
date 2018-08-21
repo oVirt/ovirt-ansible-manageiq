@@ -67,6 +67,7 @@ Virtual machine variables:
 | miq_vm_high_availability | true             | If yes ManageIQ virtual machine will be set as highly available. |
 | miq_vm_high_availability_priority | 50      | Indicates the priority of the virtual machine inside the run and migration queues. The value is an integer between 0 and 100. The higher the value, the higher the priority. |
 | miq_vm_delete_protected | true              | If yes ManageIQ virtual machine will be set as delete protected. |
+| miq_debug_create        | false             | If true log sensitive data, useful for debug purposes.           |
 
 Virtual machine main disks variables (e.g. operating system):
 
