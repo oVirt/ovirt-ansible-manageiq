@@ -2,6 +2,9 @@
 ### This option disables no_log of tasks using sensistive data:
 miq_debug_create: false
 
+### Wait for IP version (v4 or v6):
+miq_wait_for_ip_version: v4
+
 ### ManageIQ/CloudForms ###
 miq_image_path: /tmp
 

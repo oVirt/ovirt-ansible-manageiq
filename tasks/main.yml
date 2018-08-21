@@ -61,19 +61,28 @@
         name: "{{ miq_vm_name }}"
         cloud_init: "{{ miq_vm_cloud_init | default(omit) }}"
 
+    - set_fact:
+        ip_cond: "ovirt_vms | ovirtvmip{{ miq_wait_for_ip_version }} | length > 0"
+
     - name: Wait for VM IP
       ovirt_vms_facts:
         auth: "{{ ovirt_auth }}"
         pattern: "name={{ miq_vm_name }}"
         fetch_nested: true
         nested_attributes: ips
-      until: ovirt_vms | map(attribute='reported_devices') | list | first | length > 0
+      until: "ip_cond"
       retries: 10
       delay: 10
 
-    - name: ManageIQ host IP address
+    - name: ManageIQ host IPv4 address
       set_fact:
         miq_ip_addr: "{{ ovirt_vms | ovirtvmipv4 }}"
+      when: miq_wait_for_ip_version == 'v4'
+
+    - name: ManageIQ host IPv6 address
+      set_fact:
+        miq_ip_addr: "{{ ovirt_vms | ovirtvmipv6 }}"
+      when: miq_wait_for_ip_version == 'v6'
 
     - block:
       - include: init_cfme.yml
