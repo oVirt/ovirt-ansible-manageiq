@@ -4,9 +4,16 @@
   "connection_configurations": [{
     "endpoint": {
       "role": "default",
-      "hostname": "{{ engine_fqdn.split(':')[0] }}",
-      {% if engine_fqdn.split(':') | length > 1  %}
-        "port": "{{ engine_fqdn.split(':')[1]  }}",
+      {% if engine_fqdn is defined %}
+        "hostname": "{{ engine_fqdn.split(':')[0] }}",
+        {% if engine_fqdn.split(':') | length > 1  %}
+          "port": "{{ engine_fqdn.split(':')[1]  }}",
+        {% endif %}
+      {% else %}
+        "hostname": "{{ engine_url | urlsplit('hostname') }}",
+        {% if engine_url | urlsplit('port') != "" %}
+          "port": "{{ engine_url | urlsplit('port') }}",
+        {% endif %}
       {% endif %}
       "verify_ssl": {{ engine_cafile is defined }},
       {% if engine_cafile is defined %}
