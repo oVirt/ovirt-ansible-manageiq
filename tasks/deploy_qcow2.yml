@@ -45,6 +45,7 @@
   - name: Fetch storages
     ovirt_storage_domains_facts:
       auth: "{{ ovirt_auth }}"
+      pattern: "Clusters.name={{ miq_vm_cluster }} and status=active"
 
   - name: Find data domain
     set_fact:
