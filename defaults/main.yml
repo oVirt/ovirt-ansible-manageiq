@@ -24,6 +24,7 @@ miq_db_password: "{{ miq_app_password }}"
 
 # ManageIQ/CloudForms region
 miq_region: 0
+miq_region_id: "{{ miq_region|int * 1000000000000  + 1 }}"
 
 # ManageIQ/CloudForms company name
 miq_company: My Company

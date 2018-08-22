@@ -13,7 +13,7 @@
 - name: Set application admin password
   no_log: "{{ not miq_debug_create }}"
   uri:
-    url: "https://{{ miq_ip_addr }}/api/users/1"
+    url: "https://{{ miq_ip_addr }}/api/users/{{ miq_region_id }}"
     validate_certs: no
     method: POST
     user: "{{ miq_app_username }}"
@@ -31,7 +31,7 @@
 
 - name: Update ManageIQ company name
   uri:
-    url: "https://{{ miq_ip_addr }}/api/servers/1/settings"
+    url: "https://{{ miq_ip_addr }}/api/servers/{{ miq_region_id }}/settings"
     user: "{{ miq_app_username }}"
     password: "{{ miq_app_password }}"
     method: PATCH
