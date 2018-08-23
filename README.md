@@ -28,6 +28,12 @@ systemctl status ovirt-imageio-daemon
 
 You will also require the CA certificate of the engine. To do this, configure the `ovirt_ca` variable with the path to the CA certificate.
 
+Limitations
+-----------
+
+ * We don not support Ansible Check Mode (Dry Run), because this role is using few modules(command module),
+   which do not support it. Once all modules used by this role will support it, we will support it.
+
 Role Variables
 --------------
 
