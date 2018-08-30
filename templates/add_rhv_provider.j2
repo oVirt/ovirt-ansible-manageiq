@@ -11,8 +11,8 @@
         {% endif %}
       {% else %}
         "hostname": "{{ engine_url | urlsplit('hostname') }}",
-        {% if engine_url | urlsplit('port') != "" %}
-          "port": "{{ engine_url | urlsplit('port') }}",
+        {% if engine_url | urlsplit('port') != "" | lookup('env', 'OVIRT_URL') != "" %}
+          "port": "{{ engine_url | urlsplit('port') | lookup('env', 'OVIRT_URL') }}",
         {% endif %}
       {% endif %}
       "verify_ssl": {{ engine_cafile is defined }},
