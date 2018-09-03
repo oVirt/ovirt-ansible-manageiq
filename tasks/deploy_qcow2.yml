@@ -68,7 +68,7 @@
       size: "{{ miq_vm_disk_size | default(miq_image_size_gib + 'GiB') }}"
       format: "{{  miq_vm_disk_format }}"
       image_path: "{{ downloaded_file.dest }}"
-      storage_domain: "{{ miq_vm_disk_storage | default(disk_storage_domain.name) }}"
+      storage_domain: "{{ disk_storage_domain.name if disk_storage_domain is defined else miq_vm_disk_storage }}"
       force: "{{ ovirt_vms | length == 0 }}"
     register: ovirt_disk
 
