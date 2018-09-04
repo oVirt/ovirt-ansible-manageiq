@@ -15,8 +15,8 @@
           "port": "{{ engine_url | urlsplit('port') }}",
         {% endif %}
       {% endif %}
-      "verify_ssl": {{ engine_cafile is defined }},
-      {% if engine_cafile is defined %}
+      "verify_ssl": {{ engine_cafile != '' }},
+      {% if engine_cafile != '' %}
          "certificate_authority": {{ lookup('file', engine_cafile) | to_json }}
       {% endif %}
     },
