@@ -88,7 +88,8 @@ Virtual machine main disks variables (e.g. operating system):
 
 Virtual machine extra disks (e.g. database, log, tmp): a dict named
 `miq_vm_disks` allows to describe each of the extra disks (see example
-playbook). For each disk, the following attributes can be set:
+playbook). Note, that this works only with CFME.
+For each disk, the following attributes can be set:
 
 | Name      | Default value |  Description                                                         |
 |-----------|---------------|----------------------------------------------------------------------|
@@ -163,8 +164,10 @@ Example Playbook
 
 Note that for passwords you should use Ansible vault.
 
+Here is an example how to deploy CFME:
+
 ```yaml
-    - name: Deploy ManageIQ to oVirt engine
+    - name: Deploy CFME to oVirt engine
       hosts: localhost
       gather_facts: no
 
@@ -176,8 +179,8 @@ Note that for passwords you should use Ansible vault.
         engine_fqdn: ovirt-engine.example.com
         engine_user: admin@internal
 
-        miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-3.qc2
-        miq_vm_name: manageiq_g2
+        miq_qcow_url: https://cdn.example.com/cfme-rhevm-5.9.1.2-1.x86_64.qcow2
+        miq_vm_name: cfme_59
         miq_vm_cluster: mycluster
         miq_vm_cloud_init:
           host_name: "{{ miq_vm_name }}"
@@ -210,7 +213,34 @@ Note that for passwords you should use Ansible vault.
         - oVirt.manageiq
 ```
 
-License
--------
+Here is an example how to deploy ManageIQ:
 
-Apache License 2.0
+```
+---
+- name: oVirt ManageIQ deployment
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    # Contains encrypted `engine_password` and `metrics_password`
+    # varibale using ansible-vault
+    - passwords.yml
+
+  vars:
+    engine_fqdn: ovirt.example.com
+    engine_user: admin@internal
+    engine_cafile: /etc/pki/ovirt-engine/ca.pem
+
+    miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-5.qc2
+    miq_vm_name: manageiq_g5
+    miq_vm_cluster: mycluster
+
+    metrics_fqdn: metrics.example.com
+    metrics_port: 8443
+    metrics_user: admin
+
+
+  roles:
+    - oVirt.manageiq
+`````````````````````````````````
