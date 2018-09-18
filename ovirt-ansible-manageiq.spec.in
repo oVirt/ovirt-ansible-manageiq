@@ -50,6 +50,20 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Tue Sep 18 2018 Ondra Machacek <omachace@redhat.com> - 1.1.12-1
+- Document additional disks works with CFME only. rhbz#1627020
+- Skip region settings in case of ManageIQ. rhbz#1627018
+- Don't fail if miq_vm_disk_storage is defined. rhbz#1624836
+- RHV provider can be added using env vars. rhbz#1613914
+- Document that dry mode is unsupported. rhbz#1614314
+- Support using engine_fqdn instead of url. rhbz#1613914
+- Use corect IDs for MiQ region number. rhbz#1592857
+- Add miq_wait_for_ip_version variable. rhbz#1613723
+- Add miq_debug_create to disable no_log. gh#62
+- Add support for OVIRT_HOSTNAME env var.
+- Add possibility to login external from role.
+- Fix ternary operator in ovirt_auth. rhbz#1584772
+
 * Mon Jul 9 2018 Ondra Machacek <omachace@redhat.com> - 1.1.11-1
 - Can't set password via miq_app_password variable. rhbz#1590336
 
