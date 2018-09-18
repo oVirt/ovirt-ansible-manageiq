@@ -124,7 +124,7 @@ ManageIQ variables:
 | miq_password       | smartvm             | Alias of `miq_app_password` for backward compatibility.                    |
 | miq_db_username    | root                | The username to connect to the database.                                   |
 | miq_db_password    | `miq_app_password`  | The password of user specific in username used to connect to the database. |
-| miq_region         | 0                   | The ManageIQ region created in the database.                               |
+| miq_region         | 0                   | The ManageIQ region created in the database. Note: Works only with CFME.   |
 | miq_company        | My Company          | The company name of the appliance.                                         |
 | miq_disabled_roles | []                  | List of ManageIQ server roles to disable on the appliance.                 |
 | miq_enabled_roles  | []                  | List of ManageIQ server roles to enable on the appliance.                  |

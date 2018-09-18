@@ -23,9 +23,15 @@
   changed_when: false
   delegate_to: "{{ miq_ip_addr }}"
 
-- name: Initialize CloudForms
-  command: "{{ miq_init_cmd2 }}"
-  delegate_to: "{{ miq_ip_addr }}"
+- block:
+  - name: Set region id
+    set_fact:
+      miq_region_id: "{{ miq_region|int * 1000000000000  + 1 }}"
+
+  - name: Initialize CloudForms
+    command: "{{ miq_init_cmd2 }}"
+    delegate_to: "{{ miq_ip_addr }}"
+
   when: "cfme_rpm.rc == 0"
 
 - name: Set root password of appliance
