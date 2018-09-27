@@ -3,7 +3,7 @@
     auth: "{{ ovirt_auth }}"
     name: "{{ miq_vm_disks[item].name | default(miq_vm_name ~ '_' ~ item) }}"
     vm_name: "{{ miq_vm_name }}"
-    interface: "{{ miq_vm_disks[item].interface | default(omit) }}"
+    interface: "{{ miq_vm_disks[item].interface | default('virtio_scsi') }}"
     size: "{{ miq_vm_disks[item].size | default(omit) }}"
     format: "{{ miq_vm_disks[item].format | default(omit) }}"
     timeout: "{{ miq_vm_disks[item].timeout | default(omit) }}"

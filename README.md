@@ -95,7 +95,7 @@ For each disk, the following attributes can be set:
 |-----------|---------------|----------------------------------------------------------------------|
 | name      | `miq_vm_name`_`type` | The name of the virtual machine disk.                 |
 | size      | UNDEF         | The virtual machine disk size (`XXGiB`).                             |
-| interface | UNDEF         | The virtual machine disk interface type (`virtio` or `virtio_scsi`). |
+| interface | virtio_scsi   | The virtual machine disk interface type (`virtio` or `virtio_scsi`). `virtio_scsi` is recommended, as `virtio` has low limit of count of disks. |
 | format    | UNDEF         | The format of the virtual machine disk (`raw` or `cow`).             |
 | timeout   | UNDEF         | Timeout of disk creation.                                            |
 
@@ -110,7 +110,7 @@ The item in `miq_vm_nics` list of can contain following attributes:
 | Name               | Default value  |                                              |
 |--------------------|----------------|----------------------------------------------|
 | name               | UNDEF          | The name of the network interface.           |
-| interface          | UNDEF          | Type of the network interface.               |
+| interface          | UNDEF          | Type of the network interface.              |
 | mac_address        | UNDEF          | Custom MAC address of the network interface, by default it's obtained from MAC pool. |
 | network            | UNDEF          | Logical network which the VM network interface should use. If network is not specified, then Empty network is used. |
 | profile            | UNDEF          | Virtual network interface profile to be attached to VM network interface. |
@@ -188,17 +188,17 @@ Here is an example how to deploy CFME:
           database:
             name: "{{ miq_vm_name }}_database"
             size: 10GiB
-            interface: virtio
+            interface: virtio_scsi
             format: raw
           log:
             name: "{{ miq_vm_name }}_log"
             size: 10GiB
-            interface: virtio
+            interface: virtio_scsi
             format: cow
           tmp:
             name: "{{ miq_vm_name }}_tmp"
             size: 10GiB
-            interface: virtio
+            interface: virtio_scsi
             format: cow
         miq_disabled_roles:
           - smartstate

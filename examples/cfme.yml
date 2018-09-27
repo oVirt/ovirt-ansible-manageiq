@@ -23,17 +23,17 @@
       database:
         name: "{{ miq_vm_name }}_database"
         size: 10GiB
-        interface: virtio
+        interface: virtio_scsi
         format: raw
       log:
         name: "{{ miq_vm_name }}_log"
         size: 10GiB
-        interface: virtio
+        interface: virtio_scsi
         format: cow
       tmp:
         name: "{{ miq_vm_name }}_tmp"
         size: 10GiB
-        interface: virtio-scsi
+        interface: virtio_scsi
         format: raw
     miq_disabled_roles:
       - smartstate
