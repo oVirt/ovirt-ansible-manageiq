@@ -56,7 +56,7 @@ miq_vm_disks:
   database:
     name: "{{ miq_vm_name }}_database"
     size: 50GiB
-    interface: virtio
+    interface: virtio_scsi
     format: raw
     timeout: 900
 
