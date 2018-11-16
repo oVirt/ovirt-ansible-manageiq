@@ -1,9 +1,27 @@
 Deploy ManageIQ in oVirt
 ==================================================
 
-The `oVirt.manageiq` role downloads a ManageIQ/CloudForms QCOW image and deploys it into oVirt/Red Hat Virtualization (RHV).
+The `ovirt.manageiq` role downloads a ManageIQ/CloudForms QCOW image and deploys it into oVirt/Red Hat Virtualization (RHV).
 
 The role also enables you to create a virtual machine and attach the ManageIQ disk, then wait for the ManageIQ system to initialize, and register oVirt as an infrastructure provider.
+
+Note
+----
+Please note that when installing this role from Ansible Galaxy you are instructed to run following command:
+
+```bash
+$ ansible-galaxy install ovirt.manageiq
+```
+
+This will download the role to the directory with the same name as you specified on the
+command line, in this case `ovirt.manageiq`. But note that it is case sensitive, so if you specify
+for example `OVIRT.manageiq` it will download the same role, but it will add it to the directory named
+`OVIRT.manageiq`, so you later always have to use this role with upper case prefix. So be careful how
+you specify the name of the role on command line.
+
+For the RPM installation we install three legacy names `oVirt.manageiq`, `ovirt.manageiq` and `ovirt-manageiq`.
+So you can use any of these names. This documentation and examples in this repository are using name `ovirt.manageiq`.
+`oVirt.manageiq` and `ovirt-manageiq` role names are deprecated.
 
 Requirements
 ------------
@@ -210,7 +228,7 @@ Here is an example how to deploy CFME:
           - embedded_ansible
 
       roles:
-        - oVirt.manageiq
+        - ovirt.manageiq
 ```
 
 Here is an example how to deploy ManageIQ:
@@ -242,5 +260,5 @@ Here is an example how to deploy ManageIQ:
 
 
   roles:
-    - oVirt.manageiq
+    - ovirt.manageiq
 `````````````````````````````````
