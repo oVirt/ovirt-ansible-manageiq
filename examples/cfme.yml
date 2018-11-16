@@ -45,4 +45,4 @@
       - embedded_ansible
 
   roles:
-    - oVirt.manageiq
+    - ovirt.manageiq
