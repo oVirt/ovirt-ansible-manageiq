@@ -43,7 +43,7 @@
 #
 - block:
   - name: Fetch storages
-    ovirt_storage_domains_facts:
+    ovirt_storage_domain_facts:
       auth: "{{ ovirt_auth }}"
       pattern: "Clusters.name={{ miq_vm_cluster }} and status=active"
 
@@ -55,7 +55,7 @@
   when: miq_vm_disk_storage is undefined
 
 - name: Check if VM already exists
-  ovirt_vms_facts:
+  ovirt_vm_facts:
     auth: "{{ ovirt_auth }}"
     pattern: "name={{ miq_vm_name }}"
 

@@ -28,7 +28,7 @@
 
   - block:
     - name: Create ManageIQ virtual machine
-      ovirt_vms:
+      ovirt_vm:
         auth: "{{ ovirt_auth }}"
         state: present
         name: "{{ miq_vm_name }}"
@@ -62,7 +62,7 @@
       with_items: "{{ miq_vm_disks_types }}"
 
     - name: Ensure virtual machine is running
-      ovirt_vms:
+      ovirt_vm:
         auth: "{{ ovirt_auth }}"
         state: running
         name: "{{ miq_vm_name }}"
@@ -72,7 +72,7 @@
         ip_cond: "ovirt_vms | ovirtvmip{{ miq_wait_for_ip_version }} | length > 0"
 
     - name: Wait for VM IP
-      ovirt_vms_facts:
+      ovirt_vm_facts:
         auth: "{{ ovirt_auth }}"
         pattern: "name={{ miq_vm_name }}"
         fetch_nested: true
