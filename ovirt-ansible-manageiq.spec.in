@@ -60,6 +60,11 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Thu Nov 29 2018 Ondra Machacek <omachace@redhat.com> - 1.1.13-1
+- Change default disks interface to virtio_scsi.
+- Support ovirt.manageiq name.
+- Require Ansible 2.7.2.
+
 * Tue Sep 18 2018 Ondra Machacek <omachace@redhat.com> - 1.1.12-1
 - Document additional disks works with CFME only. rhbz#1627020
 - Skip region settings in case of ManageIQ. rhbz#1627018
