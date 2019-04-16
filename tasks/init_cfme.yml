@@ -43,7 +43,7 @@
     delegate_to: "{{ miq_ip_addr }}"
     when: "init_miq_vm.failed"
 
-  when: "cfme_rpm.rc == 0"
+  when: "cfme_rpm.rc == 0 and init_miq_vm.failed"
 
 - name: Set root password of appliance
   no_log: "{{ not miq_debug_create }}"
