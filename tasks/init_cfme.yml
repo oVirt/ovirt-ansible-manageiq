@@ -23,6 +23,16 @@
   changed_when: false
   delegate_to: "{{ miq_ip_addr }}"
 
+- name: Check if ManageIQ/CloudForms was initilized
+  no_log: "{{ not miq_debug_create }}"
+  uri:
+    url: "https://{{ miq_ip_addr }}/api/"
+    validate_certs: no
+    user: "{{ miq_app_username }}"
+    password: smartvm
+  register: init_miq_vm
+  ignore_errors: yes
+
 - block:
   - name: Set region id
     set_fact:
@@ -31,6 +41,7 @@
   - name: Initialize CloudForms
     command: "{{ miq_init_cmd2 }}"
     delegate_to: "{{ miq_ip_addr }}"
+    when: "init_miq_vm.failed"
 
   when: "cfme_rpm.rc == 0"
 
