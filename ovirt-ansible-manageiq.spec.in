@@ -60,6 +60,9 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Wed May 15 2019 Ondra Machacek <omachace@redhat.com> - 1.1.14-1
+- Don't try to re-init miq when initiailized.
+
 * Thu Nov 29 2018 Ondra Machacek <omachace@redhat.com> - 1.1.13-1
 - Change default disks interface to virtio_scsi.
 - Support ovirt.manageiq name.
