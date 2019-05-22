@@ -130,8 +130,7 @@ The item in `miq_vm_nics` list of can contain following attributes:
 | name               | UNDEF          | The name of the network interface.           |
 | interface          | UNDEF          | Type of the network interface.              |
 | mac_address        | UNDEF          | Custom MAC address of the network interface, by default it's obtained from MAC pool. |
-| network            | UNDEF          | Logical network which the VM network interface should use. If network is not specified, then Empty network is used. |
-| profile            | UNDEF          | Virtual network interface profile to be attached to VM network interface. |
+| profile_name       | UNDEF          | Virtual network interface profile to be attached to VM network interface. |
 
 ManageIQ variables:
 
