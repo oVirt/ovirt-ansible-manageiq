@@ -93,6 +93,7 @@ Virtual machine variables:
 | miq_vm_delete_protected | true              | If yes ManageIQ virtual machine will be set as delete protected. |
 | miq_debug_create        | false             | If true log sensitive data, useful for debug purposes.           |
 | miq_wait_for_ip_version  | v4               | Specify which IP version should be wait for. Either v4 or v6.  |
+| miq_wait_for_ip_timeout | 240               | Maximum ammount of time the playbook should wait for the IP to be reported. |
 
 Virtual machine main disks variables (e.g. operating system):
 

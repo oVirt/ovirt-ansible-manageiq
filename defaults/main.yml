@@ -4,6 +4,7 @@ miq_debug_create: false
 
 ### Wait for IP version (v4 or v6):
 miq_wait_for_ip_version: v4
+miq_wait_for_ip_timeout: 240
 
 ### ManageIQ/CloudForms ###
 miq_image_path: /tmp
