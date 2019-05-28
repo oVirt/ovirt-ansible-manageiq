@@ -78,7 +78,7 @@
         fetch_nested: true
         nested_attributes: ips
       until: "ip_cond"
-      retries: 10
+      retries: "{{ miq_wait_for_ip_timeout // 10 }}"
       delay: 10
 
     - name: ManageIQ host IPv4 address
