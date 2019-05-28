@@ -9,7 +9,7 @@ miq_wait_for_ip_version: v4
 miq_image_path: /tmp
 
 # QCOW2 ManageIQ/CloudForms image URL:
-miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-5.qc2
+miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-hammer-6.qc2
 
 # ManageIQ/CloudForms application credentials
 # We keep miq_{username,password} for backward compatibility

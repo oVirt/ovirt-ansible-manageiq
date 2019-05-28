@@ -59,7 +59,7 @@ QCOW variables:
 
 | Name          | Default value                                            |  Description                                                 |
 |---------------|----------------------------------------------------------|--------------------------------------------------------------|
-| miq_qcow_url  | http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-3.qc2 | The URL of the ManageIQ QCOW image. |
+| miq_qcow_url  | http://releases.manageiq.org/manageiq-ovirt-hammer-6.qc2 | The URL of the ManageIQ QCOW image. |
 | miq_image_path | /tmp/ | Path where the QCOW2 image will be downloaded to. If directory the base name of the URL on the remote server will be used. |
 | miq_image_checksum | UNDEF | If a checksum is defined, the digest of the destination file will be calculated after it is downloaded to ensure its integrity and verify that the transfer completed successfully. Format: :, e.g. checksum="sha256:D98291AC[...]B6DC7B97". |
 
@@ -249,8 +249,8 @@ Here is an example how to deploy ManageIQ:
     engine_user: admin@internal
     engine_cafile: /etc/pki/ovirt-engine/ca.pem
 
-    miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-gaprindashvili-5.qc2
-    miq_vm_name: manageiq_g5
+    miq_qcow_url: http://releases.manageiq.org/manageiq-ovirt-hammer-6.qc2
+    miq_vm_name: manageiq_hammer6
     miq_vm_cluster: mycluster
 
     metrics_fqdn: metrics.example.com
