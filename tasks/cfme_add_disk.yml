@@ -8,6 +8,7 @@
     format: "{{ miq_vm_disks[item].format | default(omit) }}"
     timeout: "{{ miq_vm_disks[item].timeout | default(omit) }}"
     storage_domain: "{{ miq_vm_disks[item].storage | default(disk_storage_domain.name if disk_storage_domain is defined else miq_vm_disk_storage) }}"
+    activate: yes
 
 - name: Add {{ item }} disk to CloudForms initialization command
   no_log: "{{ not miq_debug_create }}"
