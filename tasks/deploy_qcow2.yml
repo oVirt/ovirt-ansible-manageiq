@@ -43,21 +43,23 @@
 #
 - block:
   - name: Fetch storages
-    ovirt_storage_domain_facts:
+    ovirt_storage_domain_info:
       auth: "{{ ovirt_auth }}"
       pattern: "Clusters.name={{ miq_vm_cluster }} and status=active"
+    register: sd_info
 
   - name: Find data domain
     set_fact:
-      disk_storage_domain: "{{ ovirt_storage_domains | json_query(the_query) | list | first }}"
+      disk_storage_domain: "{{ sd_info.ovirt_storage_domains | json_query(the_query) | list | first }}"
     vars:
       the_query: "[?type=='data']"
   when: miq_vm_disk_storage is undefined
 
 - name: Check if VM already exists
-  ovirt_vm_facts:
+  ovirt_vm_info:
     auth: "{{ ovirt_auth }}"
     pattern: "name={{ miq_vm_name }}"
+  register: vm_info
 
 - block:
   - name: Deploy the qcow image to oVirt engine
@@ -69,7 +71,7 @@
       format: "{{  miq_vm_disk_format }}"
       image_path: "{{ downloaded_file.dest }}"
       storage_domain: "{{ disk_storage_domain.name if disk_storage_domain is defined else miq_vm_disk_storage }}"
-      force: "{{ ovirt_vms | length == 0 }}"
+      force: "{{ vm_info.ovirt_vms | length == 0 }}"
     register: ovirt_disk
 
   rescue:
