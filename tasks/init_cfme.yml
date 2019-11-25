@@ -23,6 +23,14 @@
   changed_when: false
   delegate_to: "{{ miq_ip_addr }}"
 
+- name: Start ManageIQ server
+  systemd:
+    name: evmserverd
+    state: started
+    enabled: yes
+  delegate_to: "{{ miq_ip_addr }}"
+  when: "not cfme_rpm.rc == 0"
+
 - name: Check if ManageIQ/CloudForms was initilized
   no_log: "{{ not miq_debug_create }}"
   uri:
